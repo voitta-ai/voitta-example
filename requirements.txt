@@ -1,0 +1,4 @@
+voitta
+fastapi
+uvicorn
+python-dotenv
