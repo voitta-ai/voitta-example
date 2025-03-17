@@ -2,12 +2,25 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Voitta Example",
+            "name": "Voitta Example (Dev)",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/voitta_example.py",
             "console": "integratedTerminal",
-            "justMyCode": true
+            "justMyCode": true,
+            "python": "${workspaceFolder}/.venv-dev/bin/python",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/../voitta:${env:PYTHONPATH}"
+            }
+        },
+        {
+            "name": "Voitta Example (PyPI)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/voitta_example.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "python": "${workspaceFolder}/.venv-test/bin/python"
         },
         {
             "name": "Filesystem Server",
@@ -23,10 +36,17 @@
     ],
     "compounds": [
         {
-            "name": "Voitta + Filesystem Server",
+            "name": "Voitta (Dev) + Filesystem Server",
             "configurations": [
                 "Filesystem Server",
-                "Voitta Example"
+                "Voitta Example (Dev)"
+            ]
+        },
+        {
+            "name": "Voitta (PyPI) + Filesystem Server",
+            "configurations": [
+                "Filesystem Server",
+                "Voitta Example (PyPI)"
             ]
         }
     ]

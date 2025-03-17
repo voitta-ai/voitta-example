@@ -8,7 +8,7 @@ load_dotenv()
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-voittaRouter = VoittaRouter("voitta.yaml")
+voittaRouter = VoittaRouter("config/voitta.yaml")
 
 tools = voittaRouter.get_tools()
 
@@ -19,10 +19,12 @@ completion = client.chat.completions.create(
 )
 
 function_name = completion.choices[0].message.tool_calls[0].function.name
-function_arguments = eval(completion.choices[0].message.tool_calls[0].function.arguments)
+function_arguments = eval(
+    completion.choices[0].message.tool_calls[0].function.arguments)
 
-print ( f"Function name: {function_name}" )
-print ( f"Function arguments: {function_arguments}" )
+print(f"Function name: {function_name}")
+print(f"Function arguments: {function_arguments}")
 
-result =  asyncio.run(voittaRouter.call_function(function_name, function_arguments, "", "", ""))
-print ( result )
+result = asyncio.run(voittaRouter.call_function(
+    function_name, function_arguments, "", "", ""))
+print(result)

@@ -1,6 +1,10 @@
 .env
 .venv
+.venv-dev
+.venv-test
 *~
 \#*
 .#*
 
+config/*
+!config/examples/

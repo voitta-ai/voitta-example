@@ -79,6 +79,19 @@ This project includes VS Code launch configurations for easy debugging:
 The `voitta.yaml` file contains the configuration for the Voitta router, including the URL for the filesystem server.
 
 
+## Development Environment
+
+This project supports two development environments:
+
+1. **Development Environment**: Uses your local voitta implementation for development
+2. **Testing Environment**: Uses the PyPI version of voitta for testing
+
+For detailed information about setting up and using these environments, see the [docs/development.md](docs/development.md) file.
+
+Quick start:
+- Use the VS Code workspace: `code voitta-workspace.code-workspace`
+- Or use the shell scripts: `./dev.sh` (development) or `./test.sh` (testing)
+
 ## License
 
 MIT
