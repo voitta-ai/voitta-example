@@ -78,14 +78,6 @@ This project includes VS Code launch configurations for easy debugging:
 
 The `voitta.yaml` file contains the configuration for the Voitta router, including the URL for the filesystem server.
 
-## Requirements
-
-- Python 3.8+
-- Voitta library
-- FastAPI
-- Uvicorn
-- python-dotenv
-- OpenAI Python client
 
 ## License
 

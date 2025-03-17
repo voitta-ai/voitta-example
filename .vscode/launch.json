@@ -3,7 +3,7 @@
     "configurations": [
         {
             "name": "Voitta Example",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/voitta_example.py",
             "console": "integratedTerminal",
@@ -11,7 +11,7 @@
         },
         {
             "name": "Filesystem Server",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/SERVERS/FILESYSTEM/main.py",
             "console": "integratedTerminal",
