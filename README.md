@@ -7,6 +7,7 @@ This is an example project that demonstrates how to use the Voitta library to cr
 - FastAPI application that uses Voitta for routing API calls
 - Example endpoints for getting available tools and calling functions
 - Environment variable configuration
+- Sample filesystem server for demonstration
 
 ## Installation
 
@@ -25,30 +26,57 @@ pip install -r requirements.txt
 
 3. Configure environment variables:
 
-Copy the `.env.example` file to `.env` and update the values as needed.
-
-## Usage
-
-Run the application:
+Copy the `.env.example` file to `.env` and update the values as needed:
 
 ```bash
+cp .env.example .env
+# Edit .env to add your OpenAI API key
+```
+
+## Running the Filesystem Server
+
+The project includes a sample filesystem server that provides file access functionality. This server needs to be running for the Voitta example to work properly.
+
+### Manual Start
+
+To start the filesystem server manually:
+
+```bash
+cd SERVERS/FILESYSTEM
 python main.py
 ```
 
-Or using uvicorn directly:
+The server will run on port 50000 by default (configurable in .env).
+
+## Running the Voitta Example
+
+After starting the filesystem server, you can run the Voitta example:
 
 ```bash
-uvicorn main:app --reload
+python voitta_example.py
 ```
 
-The API will be available at http://localhost:8000.
+## VS Code Integration
 
-### API Endpoints
+This project includes VS Code launch configurations for easy debugging:
 
-- `GET /`: Welcome message
-- `GET /tools`: Get all available tools
-- `POST /call-function`: Call a function through the Voitta router
-- `GET /prompt`: Get the prompt for all tools
+1. Open the project in VS Code
+2. Go to the Run and Debug panel (Ctrl+Shift+D or Cmd+Shift+D)
+3. Select one of the following launch configurations:
+   - **Filesystem Server**: Runs only the filesystem server
+   - **Voitta Example**: Runs only the Voitta example
+   - **Voitta + Filesystem Server**: Runs both the filesystem server and Voitta example
+
+## Configuration
+
+### Environment Variables
+
+- `OPENAI_API_KEY`: Your OpenAI API key
+- `FILESYSTEM_SERVER_PORT`: Port for the filesystem server (default: 50000)
+
+### Voitta Configuration
+
+The `voitta.yaml` file contains the configuration for the Voitta router, including the URL for the filesystem server.
 
 ## Requirements
 
@@ -57,6 +85,7 @@ The API will be available at http://localhost:8000.
 - FastAPI
 - Uvicorn
 - python-dotenv
+- OpenAI Python client
 
 ## License
 

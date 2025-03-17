@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Voitta Example",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/voitta_example.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Filesystem Server",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/SERVERS/FILESYSTEM/main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PORT": "${env:FILESYSTEM_SERVER_PORT}"
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Voitta + Filesystem Server",
+            "configurations": [
+                "Filesystem Server",
+                "Voitta Example"
+            ]
+        }
+    ]
+}
