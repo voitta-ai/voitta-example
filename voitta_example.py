@@ -213,15 +213,93 @@ async def main():
 
                         if function_name == "execute_tool":
                             tool_name = function_arguments.get("tool_name")
-                            arguments = function_arguments.get("arguments")
+                            arguments = function_arguments.get("arguments", {})
+
+                            # Ensure arguments is a dictionary
+                            if arguments is None:
+                                arguments = {}
 
                             print(f"Executing tool: {tool_name}")
                             print(f"With arguments: {arguments}")
 
                             # Call the actual function
-                            result = await voittaRouter.call_function(
-                                tool_name, arguments, "", "", "")
-                            print(f"Result: {result}")
+                            try:
+                                result = await voittaRouter.call_function(
+                                    tool_name, arguments, "", "", "")
+                                print(f"Result: {result}")
+
+                                # Add to conversation
+                                conversation_history.append(
+                                    message.model_dump())
+                                conversation_history.append({
+                                    "role": "tool",
+                                    "tool_call_id": tool_call.id,
+                                    "name": function_name,
+                                    "content": f"Tool executed: {tool_name}\nResult: {result}"
+                                })
+
+                                # Continue the conversation to allow further tool use
+                                completion = client.chat.completions.create(
+                                    model="gpt-4o",
+                                    messages=conversation_history,
+                                    tools=router_tools
+                                )
+
+                                message = completion.choices[0].message
+                                print(f"Final response: {message.content}")
+                            except Exception as e:
+                                print(f"Error executing tool: {e}")
+
+                                # Add error to conversation
+                                conversation_history.append(
+                                    message.model_dump())
+                                conversation_history.append({
+                                    "role": "tool",
+                                    "tool_call_id": tool_call.id,
+                                    "name": function_name,
+                                    "content": f"Error executing tool {tool_name}: {str(e)}\n\nPlease provide valid arguments for this tool."
+                                })
+
+                                # Continue the conversation to allow retry
+                                completion = client.chat.completions.create(
+                                    model="gpt-4o",
+                                    messages=conversation_history,
+                                    tools=router_tools
+                                )
+
+                                message = completion.choices[0].message
+                                print(f"Retry response: {message.content}")
+
+                                # Handle retry if needed
+                                if hasattr(message, 'tool_calls') and message.tool_calls:
+                                    tool_call = message.tool_calls[0]
+                                    function_name = tool_call.function.name
+                                    function_arguments = json.loads(
+                                        tool_call.function.arguments)
+
+                                    print(f"Retry function: {function_name}")
+                                    print(
+                                        f"Retry arguments: {function_arguments}")
+
+                                    if function_name == "execute_tool":
+                                        tool_name = function_arguments.get(
+                                            "tool_name")
+                                        arguments = function_arguments.get(
+                                            "arguments", {})
+
+                                        # Ensure arguments is a dictionary
+                                        if arguments is None:
+                                            arguments = {}
+
+                                        print(f"Retrying tool: {tool_name}")
+                                        print(f"With arguments: {arguments}")
+
+                                        try:
+                                            result = await voittaRouter.call_function(
+                                                tool_name, arguments, "", "", "")
+                                            print(f"Retry result: {result}")
+                                        except Exception as e:
+                                            print(f"Error in retry: {e}")
 
 # Run the async main function
 if __name__ == "__main__":
