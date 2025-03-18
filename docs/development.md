@@ -46,8 +46,8 @@ This is the simplest approach that uses standard Python tools.
 
 ### Implementation Details
 - Create shell scripts to easily switch between environments:
-  - `dev.sh` to activate the development environment and set PYTHONPATH
-  - `test.sh` to activate the testing environment
+  - `scripts/dev.sh` to activate the development environment and set PYTHONPATH
+  - `scripts/test.sh` to activate the testing environment
 - Update VS Code launch configurations to set the appropriate environment variables
 
 ## Option 2: Editable Install with pip

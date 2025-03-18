@@ -90,7 +90,28 @@ For detailed information about setting up and using these environments, see the 
 
 Quick start:
 - Use the VS Code workspace: `code voitta-workspace.code-workspace`
-- Or use the shell scripts: `./dev.sh` (development) or `./test.sh` (testing)
+- Or use the shell scripts: `./scripts/dev.sh` (development) or `./scripts/test.sh` (testing)
+
+### Script Options
+
+Both development scripts support the following options:
+
+- `-f`: Force recreation of the virtual environment even if it already exists
+
+Example usage:
+```bash
+# Create or activate development environment
+./scripts/dev.sh
+
+# Force recreation of development environment
+./scripts/dev.sh -f
+
+# Create or activate testing environment
+./scripts/test.sh
+
+# Force recreation of testing environment
+./scripts/test.sh -f
+```
 
 ## License
 
