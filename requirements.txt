@@ -1,4 +1,5 @@
 voitta
 fastapi
+python-multipart
 uvicorn
 python-dotenv
