@@ -1,4 +1,6 @@
 voitta
+openai
 fastapi
+python-multipart
 uvicorn
 python-dotenv

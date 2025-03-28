@@ -1,0 +1,27 @@
+{
+    "folders": [
+        {
+            "path": ".",
+            "name": "voitta-example"
+        },
+        {
+            "path": "../voitta",
+            "name": "voitta-local"
+        }
+    ],
+    "settings": {
+        "python.defaultInterpreterPath": "${workspaceFolder:voitta-example}/.venv-dev/bin/python",
+        "python.analysis.extraPaths": [
+            "${workspaceFolder:voitta-local}"
+        ],
+        "terminal.integrated.env.osx": {
+            "PYTHONPATH": "${workspaceFolder:voitta-local}:${env:PYTHONPATH}"
+        },
+        "terminal.integrated.env.linux": {
+            "PYTHONPATH": "${workspaceFolder:voitta-local}:${env:PYTHONPATH}"
+        },
+        "terminal.integrated.env.windows": {
+            "PYTHONPATH": "${workspaceFolder:voitta-local};${env:PYTHONPATH}"
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Activate Dev Environment",
+            "type": "shell",
+            "command": "source .venv-dev/bin/activate",
+            "windows": {
+                "command": ".venv-dev\\Scripts\\activate"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Activate Test Environment",
+            "type": "shell",
+            "command": "source .venv-test/bin/activate",
+            "windows": {
+                "command": ".venv-test\\Scripts\\activate"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
