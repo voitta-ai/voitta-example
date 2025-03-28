@@ -21,6 +21,17 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "python": "${workspaceFolder}/.venv-test/bin/python"
+        },
+        {
+            "name": "Filesystem Server",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/SERVERS/FILESYSTEM/main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PORT": "${env:FILESYSTEM_SERVER_PORT}"
+            }
         }
     ]
 }
