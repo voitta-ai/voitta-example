@@ -1,5 +1,6 @@
 voitta
 openai
+fastmcp
 fastapi
 python-multipart
 uvicorn

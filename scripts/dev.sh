@@ -23,7 +23,7 @@ if [ ! -d ".venv-dev" ] || [ "$FORCE" = true ]; then
     fi
     
     echo "Creating development virtual environment..."
-    python -m venv .venv-dev
+    python3 -m venv .venv-dev
     source .venv-dev/bin/activate
     pip install -r requirements.txt
     pip uninstall -y voitta  # Remove voitta if it was installed

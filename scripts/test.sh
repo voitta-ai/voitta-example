@@ -23,7 +23,7 @@ if [ ! -d ".venv-test" ] || [ "$FORCE" = true ]; then
     fi
     
     echo "Creating testing virtual environment..."
-    python -m venv .venv-test
+    python3 -m venv .venv-test
     source .venv-test/bin/activate
     pip install -r requirements.txt
 fi
